@@ -52,7 +52,7 @@ namespace HoldemBattle.Models
             /// <summary>
             /// The '2' value.
             /// </summary>
-            Two,
+            Two = 2,
 
             /// <summary>
             /// The '3' value.

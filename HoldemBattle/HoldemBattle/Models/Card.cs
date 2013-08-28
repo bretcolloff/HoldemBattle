@@ -57,5 +57,91 @@ namespace HoldemBattle.Models
             get;
             private set;
         }
+
+        /// <summary>
+        /// Implements the greater than operator for <see cref="Card"/>.
+        /// </summary>
+        /// <param name="left">The left <see cref="Card"/>.</param>
+        /// <param name="right">The right <see cref="Card"/>.</param>
+        /// <returns>true if the left is greater than the right, otherwise false.</returns>
+        public static Card operator >(Card left, Card right)
+        {
+            return (int)left.Value > (int)right.Value ? left : right;
+        }
+
+        /// <summary>
+        /// Implements the less than than operator for <see cref="Card"/>.
+        /// </summary>
+        /// <param name="left">The left <see cref="Card"/>.</param>
+        /// <param name="right">The right <see cref="Card"/>.</param>
+        /// <returns>true if the left is less than the right, otherwise false.</returns>
+        public static Card operator <(Card left, Card right)
+        {
+            return (int)left.Value < (int)right.Value ? left : right;
+        }
+
+        /// <summary>
+        /// Implements the equals operator for <see cref="Card"/>.
+        /// </summary>
+        /// <param name="left">The left <see cref="Card"/>.</param>
+        /// <param name="right">The right <see cref="Card"/>.</param>
+        /// <returns>true if the left is equal to right, otherwise false.</returns>
+        public static Card operator ==(Card left, Card right)
+        {
+            return (int)left.Value == (int)right.Value ? left : right;
+        }
+
+        /// <summary>
+        /// Implements the not equal operator for <see cref="Card"/>.
+        /// </summary>
+        /// <param name="left">The left <see cref="Card"/>.</param>
+        /// <param name="right">The right <see cref="Card"/>.</param>
+        /// <returns>true if the left is not equal to the right, otherwise false.</returns>
+        public static Card operator !=(Card left, Card right)
+        {
+            return (int)left.Value != (int)right.Value ? left : right;
+        }
+
+        /// <summary>
+        /// Checks reference equality between this and another object.
+        /// </summary>
+        /// <param name="obj">The <see cref="object"/>to compare against.</param>
+        /// <returns>true if they are reference equal, otherwise false.</returns>
+        public override bool Equals(object obj)
+        {
+            if (ReferenceEquals(null, obj))
+            {
+                return false;
+            }
+
+            if (ReferenceEquals(this, obj))
+            {
+                return true;
+            }
+
+            return obj is Card && this.Equals((Card)obj);
+        }
+
+        /// <summary>
+        /// Gets a hash code for the object.
+        /// </summary>
+        /// <returns>The hash code as an <see cref="int"/>.</returns>
+        public override int GetHashCode()
+        {
+            unchecked
+            {
+                return ((int)Suit * 397) ^ (int)Value;
+            }
+        }
+
+        /// <summary>
+        /// Checks equality between this and another <see cref="Card"/>.
+        /// </summary>
+        /// <param name="other">The <see cref="Card"/> to compare against.</param>
+        /// <returns>true if they are equal, otherwise false.</returns>
+        private bool Equals(Card other)
+        {
+            return Suit == other.Suit && Value == other.Value;
+        }
     }
 }
