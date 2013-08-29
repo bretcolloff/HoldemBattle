@@ -25,7 +25,7 @@ namespace HoldemBattle.GameLogic
         /// <returns>If no appropriate subset is found null, otherwise the value of the highest card in the subset.</returns>
         public static Value? ContainsStraight(IEnumerable<Card> cards)
         {
-            var orderedValues = cards.Distinct().OrderByDescending(x => x.Value).Select(x => (int)x.Value).ToList();
+            var orderedValues = cards.Select(x => (int)x.Value).Distinct().OrderByDescending(x => x).ToList();
             
             // If the list contains an ace, add the low value aswell, to check for 5 high straights.
             if (orderedValues.Contains((int)Value.Ace))

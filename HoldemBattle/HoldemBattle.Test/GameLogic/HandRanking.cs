@@ -150,7 +150,7 @@ namespace HoldemBattle.Test
                 new Models.Card(GameValues.Suit.Club, GameValues.Value.Jack),
                 new Models.Card(GameValues.Suit.Club, GameValues.Value.Ten),
                 new Models.Card(GameValues.Suit.Club, GameValues.Value.Eight),
-                new Models.Card(GameValues.Suit.Club, GameValues.Value.Queen),
+                new Models.Card(GameValues.Suit.Spade, GameValues.Value.Queen),
             };
 
             GameValues.Value? topValue = GameLogic.HandRanking.ContainsStraight(cards);
