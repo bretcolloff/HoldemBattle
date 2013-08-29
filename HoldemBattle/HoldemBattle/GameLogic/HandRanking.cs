@@ -5,6 +5,8 @@
 // <summary>Stores values used for cards.</summary>
 //-----------------------------------------------------------------------
 
+using System.Xml.Schema;
+
 namespace HoldemBattle.GameLogic
 {
     using System;
@@ -20,7 +22,7 @@ namespace HoldemBattle.GameLogic
     /// <summary>
     /// Contains logic for working out value specific value comparisons.
     /// </summary>
-    public static class CardRanking
+    public static class HandRanking
     {
         /// <summary>
         /// Determines whether a provided sequence of <see cref="Card"/> objects contain a subset of 5 cards who's values are consecutive.
@@ -29,29 +31,30 @@ namespace HoldemBattle.GameLogic
         /// <returns>If no appropriate subset is found null, otherwise the value of the highest card in the subset.</returns>
         public static Value? ContainsStraight(IEnumerable<Card> cards)
         {
-            var orderedValues = cards.OrderBy(x => x.Value).Select(x => (int)x.Value).ToList();
+            var orderedValues = cards.Distinct().OrderByDescending(x => x.Value).Select(x => (int)x.Value).ToList();
             
             // If the list contains an ace, add the low value aswell, to check for 5 high straights.
             if (orderedValues.Contains((int)Value.Ace))
             {
                 orderedValues.Add(1);
-                orderedValues.Sort();
             }
 
             int sequenceStart = orderedValues[0];
-            int sequenceLast = orderedValues[0];
+            int sequenceEnd = orderedValues[0];
 
             for (int i = 1; i < orderedValues.Count(); i++)
             {
-                // If this card is 1 value higher than the last, continue.
-                if (orderedValues[i] == (sequenceLast + 1))
+                var nextExpectedValue = sequenceEnd - 1;
+
+                // If this card is 1 value lower than the last, continue.
+                if (orderedValues[i] == nextExpectedValue)
                 {
-                    sequenceLast = orderedValues[i];
+                    sequenceEnd = orderedValues[i];
 
                     // If we've got a straight, return the highest card value in it.
-                    if ((sequenceLast - sequenceStart) == 4)
+                    if ((sequenceStart - sequenceEnd) == 4)
                     {
-                        return (Value)sequenceLast;
+                        return (Value)sequenceStart;
                     }
 
                     continue;
@@ -59,8 +62,9 @@ namespace HoldemBattle.GameLogic
                 else
                 {
                     sequenceStart = orderedValues[i];
-                    sequenceLast = orderedValues[i];
+                    sequenceEnd = orderedValues[i];
                 }
+
             }
 
             return null;
