@@ -5,16 +5,10 @@
 // <summary>Stores values used for cards.</summary>
 //-----------------------------------------------------------------------
 
-using System.Xml.Schema;
-
 namespace HoldemBattle.GameLogic
 {
-    using System;
     using System.Collections.Generic;
     using System.Linq;
-    using System.Text;
-    using System.Threading.Tasks;
-
     using HoldemBattle.Models;
 
     using Value = Models.GameValues.Value;
@@ -64,10 +58,27 @@ namespace HoldemBattle.GameLogic
                     sequenceStart = orderedValues[i];
                     sequenceEnd = orderedValues[i];
                 }
-
             }
 
             return null;
+        }
+
+        /// <summary>
+        /// Determines whether a provided sequence of <see cref="Card"/> objects contain a subset of 5 cards who are of the same suit.
+        /// </summary>
+        /// <param name="cards">An <see cref="IEnumerable"/> of <see cref="Card"/> objects.</param>
+        /// <returns>If no appropriate subset is found null, otherwise the value of the highest card in the subset.</returns>
+        public static Value? ContainsFlush(IEnumerable<Card> cards)
+        {
+            IEnumerable<IGrouping<GameValues.Suit, Card>> suitGroups = cards.GroupBy(x => x.Suit);
+            IGrouping<GameValues.Suit, Card> flushGroup = suitGroups.SingleOrDefault(x => x.Count() >= 5);
+
+            if (flushGroup == null)
+            {
+                return null;
+            }
+
+            return flushGroup.OrderByDescending(x => (int)x.Value).First().Value;
         }
     }
 }

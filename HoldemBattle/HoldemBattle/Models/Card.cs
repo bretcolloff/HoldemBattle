@@ -8,11 +8,6 @@
 namespace HoldemBattle.Models
 {
     using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
-    using System.Threading.Tasks;
-
     using Suit = GameValues.Suit;
     using Value = GameValues.Value;
 
@@ -64,9 +59,9 @@ namespace HoldemBattle.Models
         /// <param name="left">The left <see cref="Card"/>.</param>
         /// <param name="right">The right <see cref="Card"/>.</param>
         /// <returns>true if the left is greater than the right, otherwise false.</returns>
-        public static Card operator >(Card left, Card right)
+        public static bool operator >(Card left, Card right)
         {
-            return (int)left.Value > (int)right.Value ? left : right;
+            return (int)left.Value > (int)right.Value;
         }
 
         /// <summary>
@@ -75,9 +70,9 @@ namespace HoldemBattle.Models
         /// <param name="left">The left <see cref="Card"/>.</param>
         /// <param name="right">The right <see cref="Card"/>.</param>
         /// <returns>true if the left is less than the right, otherwise false.</returns>
-        public static Card operator <(Card left, Card right)
+        public static bool operator <(Card left, Card right)
         {
-            return (int)left.Value < (int)right.Value ? left : right;
+            return (int)left.Value < (int)right.Value;
         }
 
         /// <summary>
@@ -86,9 +81,9 @@ namespace HoldemBattle.Models
         /// <param name="left">The left <see cref="Card"/>.</param>
         /// <param name="right">The right <see cref="Card"/>.</param>
         /// <returns>true if the left is equal to right, otherwise false.</returns>
-        public static Card operator ==(Card left, Card right)
+        public static bool operator ==(Card left, Card right)
         {
-            return (int)left.Value == (int)right.Value ? left : right;
+            return (int)left.Value == (int)right.Value;
         }
 
         /// <summary>
@@ -97,15 +92,15 @@ namespace HoldemBattle.Models
         /// <param name="left">The left <see cref="Card"/>.</param>
         /// <param name="right">The right <see cref="Card"/>.</param>
         /// <returns>true if the left is not equal to the right, otherwise false.</returns>
-        public static Card operator !=(Card left, Card right)
+        public static bool operator !=(Card left, Card right)
         {
-            return (int)left.Value != (int)right.Value ? left : right;
+            return (int)left.Value != (int)right.Value;
         }
 
         /// <summary>
         /// Checks reference equality between this and another object.
         /// </summary>
-        /// <param name="obj">The <see cref="object"/>to compare against.</param>
+        /// <param name="obj">The <see cref="object"/> to compare against.</param>
         /// <returns>true if they are reference equal, otherwise false.</returns>
         public override bool Equals(object obj)
         {
