@@ -44,9 +44,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="GameLogic\StakeInfo.cs" />
+    <Compile Include="GameLogic\Table.cs" />
     <Compile Include="Models\Card.cs" />
     <Compile Include="GameLogic\HandRanking.cs" />
     <Compile Include="Models\GameValues.cs" />
+    <Compile Include="Player.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
