@@ -8,6 +8,7 @@
 namespace HoldemBattle.Test
 {
     using System.Collections.Generic;
+
     using HoldemBattle.Models;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
 
@@ -15,7 +16,7 @@ namespace HoldemBattle.Test
     /// Tests of the HandRanking class and functionality.
     /// </summary>
     [TestClass]
-    public class HandRanking
+    public sealed class HandRanking
     {
         /// <summary>
         /// In a list of <see cref="Card"/> objects representing a straight, it's correctly determined.
@@ -23,13 +24,13 @@ namespace HoldemBattle.Test
         [TestMethod]
         public void ValidStraightDetected()
         {
-            List<Models.Card> cards = new List<Models.Card>()
+            List<HoldemBattle.Models.Card> cards = new List<HoldemBattle.Models.Card>()
             {
-                new Models.Card(GameValues.Suit.Club, GameValues.Value.Four),
-                new Models.Card(GameValues.Suit.Club, GameValues.Value.Five),
-                new Models.Card(GameValues.Suit.Club, GameValues.Value.Six),
-                new Models.Card(GameValues.Suit.Club, GameValues.Value.Seven),
-                new Models.Card(GameValues.Suit.Club, GameValues.Value.Eight),
+                new HoldemBattle.Models.Card(GameValues.Suit.Club, GameValues.Value.Four),
+                new HoldemBattle.Models.Card(GameValues.Suit.Club, GameValues.Value.Five),
+                new HoldemBattle.Models.Card(GameValues.Suit.Club, GameValues.Value.Six),
+                new HoldemBattle.Models.Card(GameValues.Suit.Club, GameValues.Value.Seven),
+                new HoldemBattle.Models.Card(GameValues.Suit.Club, GameValues.Value.Eight),
             };
 
             GameValues.Value? topValue = GameLogic.HandRanking.ContainsStraight(cards);
@@ -42,13 +43,13 @@ namespace HoldemBattle.Test
         [TestMethod]
         public void InvalidStraightIgnored()
         {
-            List<Models.Card> cards = new List<Models.Card>()
+            List<HoldemBattle.Models.Card> cards = new List<HoldemBattle.Models.Card>()
             {
-                new Models.Card(GameValues.Suit.Club, GameValues.Value.Four),
-                new Models.Card(GameValues.Suit.Club, GameValues.Value.Five),
-                new Models.Card(GameValues.Suit.Club, GameValues.Value.King),
-                new Models.Card(GameValues.Suit.Club, GameValues.Value.Seven),
-                new Models.Card(GameValues.Suit.Club, GameValues.Value.Eight),
+                new HoldemBattle.Models.Card(GameValues.Suit.Club, GameValues.Value.Four),
+                new HoldemBattle.Models.Card(GameValues.Suit.Club, GameValues.Value.Five),
+                new HoldemBattle.Models.Card(GameValues.Suit.Club, GameValues.Value.King),
+                new HoldemBattle.Models.Card(GameValues.Suit.Club, GameValues.Value.Seven),
+                new HoldemBattle.Models.Card(GameValues.Suit.Club, GameValues.Value.Eight),
             };
 
             Assert.IsNull(GameLogic.HandRanking.ContainsStraight(cards), "A straight was detected, though it shouldn't have been.");
@@ -60,12 +61,12 @@ namespace HoldemBattle.Test
         [TestMethod]
         public void FourStraightIgnored()
         {
-            List<Models.Card> cards = new List<Models.Card>()
+            List<HoldemBattle.Models.Card> cards = new List<HoldemBattle.Models.Card>()
             {
-                new Models.Card(GameValues.Suit.Club, GameValues.Value.Four),
-                new Models.Card(GameValues.Suit.Club, GameValues.Value.Five),
-                new Models.Card(GameValues.Suit.Club, GameValues.Value.Six),
-                new Models.Card(GameValues.Suit.Club, GameValues.Value.Seven),
+                new HoldemBattle.Models.Card(GameValues.Suit.Club, GameValues.Value.Four),
+                new HoldemBattle.Models.Card(GameValues.Suit.Club, GameValues.Value.Five),
+                new HoldemBattle.Models.Card(GameValues.Suit.Club, GameValues.Value.Six),
+                new HoldemBattle.Models.Card(GameValues.Suit.Club, GameValues.Value.Seven),
             };
 
             Assert.IsNull(GameLogic.HandRanking.ContainsStraight(cards), "A straight was detected, though it shouldn't have been.");
@@ -77,15 +78,15 @@ namespace HoldemBattle.Test
         [TestMethod]
         public void HighestValueInLongStraight()
         {
-            List<Models.Card> cards = new List<Models.Card>()
+            List<HoldemBattle.Models.Card> cards = new List<HoldemBattle.Models.Card>()
             {
-                new Models.Card(GameValues.Suit.Club, GameValues.Value.Four),
-                new Models.Card(GameValues.Suit.Club, GameValues.Value.Five),
-                new Models.Card(GameValues.Suit.Club, GameValues.Value.Six),
-                new Models.Card(GameValues.Suit.Club, GameValues.Value.Seven),
-                new Models.Card(GameValues.Suit.Club, GameValues.Value.Eight),
-                new Models.Card(GameValues.Suit.Club, GameValues.Value.Nine),
-                new Models.Card(GameValues.Suit.Club, GameValues.Value.King),
+                new HoldemBattle.Models.Card(GameValues.Suit.Club, GameValues.Value.Four),
+                new HoldemBattle.Models.Card(GameValues.Suit.Club, GameValues.Value.Five),
+                new HoldemBattle.Models.Card(GameValues.Suit.Club, GameValues.Value.Six),
+                new HoldemBattle.Models.Card(GameValues.Suit.Club, GameValues.Value.Seven),
+                new HoldemBattle.Models.Card(GameValues.Suit.Club, GameValues.Value.Eight),
+                new HoldemBattle.Models.Card(GameValues.Suit.Club, GameValues.Value.Nine),
+                new HoldemBattle.Models.Card(GameValues.Suit.Club, GameValues.Value.King),
             };
 
             GameValues.Value? topValue = GameLogic.HandRanking.ContainsStraight(cards);
@@ -100,15 +101,15 @@ namespace HoldemBattle.Test
         [TestMethod]
         public void LowestAceStraightDetected()
         {
-            List<Models.Card> cards = new List<Models.Card>()
+            List<HoldemBattle.Models.Card> cards = new List<HoldemBattle.Models.Card>()
             {
-                new Models.Card(GameValues.Suit.Club, GameValues.Value.Ace),
-                new Models.Card(GameValues.Suit.Club, GameValues.Value.Two),
-                new Models.Card(GameValues.Suit.Club, GameValues.Value.Three),
-                new Models.Card(GameValues.Suit.Club, GameValues.Value.Four),
-                new Models.Card(GameValues.Suit.Club, GameValues.Value.Five),
-                new Models.Card(GameValues.Suit.Club, GameValues.Value.Eight),
-                new Models.Card(GameValues.Suit.Club, GameValues.Value.King),
+                new HoldemBattle.Models.Card(GameValues.Suit.Club, GameValues.Value.Ace),
+                new HoldemBattle.Models.Card(GameValues.Suit.Club, GameValues.Value.Two),
+                new HoldemBattle.Models.Card(GameValues.Suit.Club, GameValues.Value.Three),
+                new HoldemBattle.Models.Card(GameValues.Suit.Club, GameValues.Value.Four),
+                new HoldemBattle.Models.Card(GameValues.Suit.Club, GameValues.Value.Five),
+                new HoldemBattle.Models.Card(GameValues.Suit.Club, GameValues.Value.Eight),
+                new HoldemBattle.Models.Card(GameValues.Suit.Club, GameValues.Value.King),
             };
 
             GameValues.Value? topValue = GameLogic.HandRanking.ContainsStraight(cards);
@@ -121,15 +122,15 @@ namespace HoldemBattle.Test
         [TestMethod]
         public void HighestAceStraightDetected()
         {
-            List<Models.Card> cards = new List<Models.Card>()
+            List<HoldemBattle.Models.Card> cards = new List<HoldemBattle.Models.Card>()
             {
-                new Models.Card(GameValues.Suit.Club, GameValues.Value.Ace),
-                new Models.Card(GameValues.Suit.Club, GameValues.Value.King),
-                new Models.Card(GameValues.Suit.Club, GameValues.Value.Queen),
-                new Models.Card(GameValues.Suit.Club, GameValues.Value.Jack),
-                new Models.Card(GameValues.Suit.Club, GameValues.Value.Ten),
-                new Models.Card(GameValues.Suit.Club, GameValues.Value.Eight),
-                new Models.Card(GameValues.Suit.Club, GameValues.Value.Two),
+                new HoldemBattle.Models.Card(GameValues.Suit.Club, GameValues.Value.Ace),
+                new HoldemBattle.Models.Card(GameValues.Suit.Club, GameValues.Value.King),
+                new HoldemBattle.Models.Card(GameValues.Suit.Club, GameValues.Value.Queen),
+                new HoldemBattle.Models.Card(GameValues.Suit.Club, GameValues.Value.Jack),
+                new HoldemBattle.Models.Card(GameValues.Suit.Club, GameValues.Value.Ten),
+                new HoldemBattle.Models.Card(GameValues.Suit.Club, GameValues.Value.Eight),
+                new HoldemBattle.Models.Card(GameValues.Suit.Club, GameValues.Value.Two),
             };
 
             GameValues.Value? topValue = GameLogic.HandRanking.ContainsStraight(cards);
@@ -142,15 +143,15 @@ namespace HoldemBattle.Test
         [TestMethod]
         public void PairingInStraightIgnored()
         {
-            List<Models.Card> cards = new List<Models.Card>()
+            List<HoldemBattle.Models.Card> cards = new List<HoldemBattle.Models.Card>()
             {
-                new Models.Card(GameValues.Suit.Club, GameValues.Value.Ace),
-                new Models.Card(GameValues.Suit.Club, GameValues.Value.King),
-                new Models.Card(GameValues.Suit.Club, GameValues.Value.Queen),
-                new Models.Card(GameValues.Suit.Club, GameValues.Value.Jack),
-                new Models.Card(GameValues.Suit.Club, GameValues.Value.Ten),
-                new Models.Card(GameValues.Suit.Club, GameValues.Value.Eight),
-                new Models.Card(GameValues.Suit.Spade, GameValues.Value.Queen),
+                new HoldemBattle.Models.Card(GameValues.Suit.Club, GameValues.Value.Ace),
+                new HoldemBattle.Models.Card(GameValues.Suit.Club, GameValues.Value.King),
+                new HoldemBattle.Models.Card(GameValues.Suit.Club, GameValues.Value.Queen),
+                new HoldemBattle.Models.Card(GameValues.Suit.Club, GameValues.Value.Jack),
+                new HoldemBattle.Models.Card(GameValues.Suit.Club, GameValues.Value.Ten),
+                new HoldemBattle.Models.Card(GameValues.Suit.Club, GameValues.Value.Eight),
+                new HoldemBattle.Models.Card(GameValues.Suit.Spade, GameValues.Value.Queen),
             };
 
             GameValues.Value? topValue = GameLogic.HandRanking.ContainsStraight(cards);
@@ -163,15 +164,15 @@ namespace HoldemBattle.Test
         [TestMethod]
         public void IndependantOfInputOrdering()
         {
-            List<Models.Card> cards = new List<Models.Card>()
+            List<HoldemBattle.Models.Card> cards = new List<HoldemBattle.Models.Card>()
             {
-                new Models.Card(GameValues.Suit.Club, GameValues.Value.Ace),
-                new Models.Card(GameValues.Suit.Club, GameValues.Value.King),
-                new Models.Card(GameValues.Suit.Club, GameValues.Value.Eight),
-                new Models.Card(GameValues.Suit.Club, GameValues.Value.Queen),
-                new Models.Card(GameValues.Suit.Club, GameValues.Value.Ten),
-                new Models.Card(GameValues.Suit.Club, GameValues.Value.Jack),
-                new Models.Card(GameValues.Suit.Club, GameValues.Value.Queen),
+                new HoldemBattle.Models.Card(GameValues.Suit.Club, GameValues.Value.Ace),
+                new HoldemBattle.Models.Card(GameValues.Suit.Club, GameValues.Value.King),
+                new HoldemBattle.Models.Card(GameValues.Suit.Club, GameValues.Value.Eight),
+                new HoldemBattle.Models.Card(GameValues.Suit.Club, GameValues.Value.Queen),
+                new HoldemBattle.Models.Card(GameValues.Suit.Club, GameValues.Value.Ten),
+                new HoldemBattle.Models.Card(GameValues.Suit.Club, GameValues.Value.Jack),
+                new HoldemBattle.Models.Card(GameValues.Suit.Club, GameValues.Value.Queen),
             };
 
             GameValues.Value? topValue = GameLogic.HandRanking.ContainsStraight(cards);
@@ -184,15 +185,15 @@ namespace HoldemBattle.Test
         [TestMethod]
         public void TolerantOfQuadsFull()
         {
-            List<Models.Card> cards = new List<Models.Card>()
+            List<HoldemBattle.Models.Card> cards = new List<HoldemBattle.Models.Card>()
             {
-                new Models.Card(GameValues.Suit.Club, GameValues.Value.Ace),
-                new Models.Card(GameValues.Suit.Club, GameValues.Value.Ace),
-                new Models.Card(GameValues.Suit.Club, GameValues.Value.Ace),
-                new Models.Card(GameValues.Suit.Club, GameValues.Value.Ace),
-                new Models.Card(GameValues.Suit.Club, GameValues.Value.King),
-                new Models.Card(GameValues.Suit.Club, GameValues.Value.King),
-                new Models.Card(GameValues.Suit.Club, GameValues.Value.King),
+                new HoldemBattle.Models.Card(GameValues.Suit.Club, GameValues.Value.Ace),
+                new HoldemBattle.Models.Card(GameValues.Suit.Club, GameValues.Value.Ace),
+                new HoldemBattle.Models.Card(GameValues.Suit.Club, GameValues.Value.Ace),
+                new HoldemBattle.Models.Card(GameValues.Suit.Club, GameValues.Value.Ace),
+                new HoldemBattle.Models.Card(GameValues.Suit.Club, GameValues.Value.King),
+                new HoldemBattle.Models.Card(GameValues.Suit.Club, GameValues.Value.King),
+                new HoldemBattle.Models.Card(GameValues.Suit.Club, GameValues.Value.King),
             };
 
             GameValues.Value? topValue = GameLogic.HandRanking.ContainsStraight(cards);
@@ -205,39 +206,39 @@ namespace HoldemBattle.Test
         [TestMethod]
         public void IgnoresFourFlush()
         {
-            List<Models.Card> cards = new List<Models.Card>()
+            List<HoldemBattle.Models.Card> cards = new List<HoldemBattle.Models.Card>()
             {
-                new Models.Card(GameValues.Suit.Club, GameValues.Value.Ace),
-                new Models.Card(GameValues.Suit.Club, GameValues.Value.Three),
-                new Models.Card(GameValues.Suit.Club, GameValues.Value.Five),
-                new Models.Card(GameValues.Suit.Club, GameValues.Value.Seven),
-                new Models.Card(GameValues.Suit.Heart, GameValues.Value.Nine),
-                new Models.Card(GameValues.Suit.Heart, GameValues.Value.Jack),
-                new Models.Card(GameValues.Suit.Heart, GameValues.Value.King),
+                new HoldemBattle.Models.Card(GameValues.Suit.Club, GameValues.Value.Ace),
+                new HoldemBattle.Models.Card(GameValues.Suit.Club, GameValues.Value.Three),
+                new HoldemBattle.Models.Card(GameValues.Suit.Club, GameValues.Value.Five),
+                new HoldemBattle.Models.Card(GameValues.Suit.Club, GameValues.Value.Seven),
+                new HoldemBattle.Models.Card(GameValues.Suit.Heart, GameValues.Value.Nine),
+                new HoldemBattle.Models.Card(GameValues.Suit.Heart, GameValues.Value.Jack),
+                new HoldemBattle.Models.Card(GameValues.Suit.Heart, GameValues.Value.King),
             };
 
-            GameValues.Value? topValue = GameLogic.HandRanking.ContainsStraight(cards);
+            GameValues.Value? topValue = GameLogic.HandRanking.ContainsFlush(cards);
             Assert.IsNull(topValue, "Failed to not classify a 4 flush as a flush.");
         }
 
         /// <summary>
-        /// Given a list of <see cref="Card"/> objects with no flush, it's correctly igored.
+        /// Given a list of <see cref="Card"/> objects with no flush, it's correctly ignored.
         /// </summary>
         [TestMethod]
         public void IgnoresNoFlush()
         {
-            List<Models.Card> cards = new List<Models.Card>()
+            List<HoldemBattle.Models.Card> cards = new List<HoldemBattle.Models.Card>()
             {
-                new Models.Card(GameValues.Suit.Club, GameValues.Value.Ace),
-                new Models.Card(GameValues.Suit.Club, GameValues.Value.Three),
-                new Models.Card(GameValues.Suit.Spade, GameValues.Value.Five),
-                new Models.Card(GameValues.Suit.Spade, GameValues.Value.Seven),
-                new Models.Card(GameValues.Suit.Heart, GameValues.Value.Nine),
-                new Models.Card(GameValues.Suit.Heart, GameValues.Value.Jack),
-                new Models.Card(GameValues.Suit.Diamond, GameValues.Value.King),
+                new HoldemBattle.Models.Card(GameValues.Suit.Club, GameValues.Value.Ace),
+                new HoldemBattle.Models.Card(GameValues.Suit.Club, GameValues.Value.Three),
+                new HoldemBattle.Models.Card(GameValues.Suit.Spade, GameValues.Value.Five),
+                new HoldemBattle.Models.Card(GameValues.Suit.Spade, GameValues.Value.Seven),
+                new HoldemBattle.Models.Card(GameValues.Suit.Heart, GameValues.Value.Nine),
+                new HoldemBattle.Models.Card(GameValues.Suit.Heart, GameValues.Value.Jack),
+                new HoldemBattle.Models.Card(GameValues.Suit.Diamond, GameValues.Value.King),
             };
 
-            GameValues.Value? topValue = GameLogic.HandRanking.ContainsStraight(cards);
+            GameValues.Value? topValue = GameLogic.HandRanking.ContainsFlush(cards);
             Assert.IsNull(topValue, "Failed to not classify collection with no more than 2 of the same suit as a flush.");
         }
 
@@ -247,15 +248,15 @@ namespace HoldemBattle.Test
         [TestMethod]
         public void DetectsCorrectFlush()
         {
-            List<Models.Card> cards = new List<Models.Card>()
+            List<HoldemBattle.Models.Card> cards = new List<HoldemBattle.Models.Card>()
             {
-                new Models.Card(GameValues.Suit.Club, GameValues.Value.Ace),
-                new Models.Card(GameValues.Suit.Club, GameValues.Value.Three),
-                new Models.Card(GameValues.Suit.Club, GameValues.Value.Five),
-                new Models.Card(GameValues.Suit.Club, GameValues.Value.Seven),
-                new Models.Card(GameValues.Suit.Club, GameValues.Value.Nine),
-                new Models.Card(GameValues.Suit.Heart, GameValues.Value.Jack),
-                new Models.Card(GameValues.Suit.Heart, GameValues.Value.King),
+                new HoldemBattle.Models.Card(GameValues.Suit.Club, GameValues.Value.Ace),
+                new HoldemBattle.Models.Card(GameValues.Suit.Club, GameValues.Value.Three),
+                new HoldemBattle.Models.Card(GameValues.Suit.Club, GameValues.Value.Five),
+                new HoldemBattle.Models.Card(GameValues.Suit.Club, GameValues.Value.Seven),
+                new HoldemBattle.Models.Card(GameValues.Suit.Club, GameValues.Value.Nine),
+                new HoldemBattle.Models.Card(GameValues.Suit.Heart, GameValues.Value.Jack),
+                new HoldemBattle.Models.Card(GameValues.Suit.Heart, GameValues.Value.King),
             };
 
             GameValues.Value? topValue = GameLogic.HandRanking.ContainsFlush(cards);
@@ -268,15 +269,15 @@ namespace HoldemBattle.Test
         [TestMethod]
         public void GetsCorrectHighCard()
         {
-            List<Models.Card> cards = new List<Models.Card>()
+            List<HoldemBattle.Models.Card> cards = new List<HoldemBattle.Models.Card>()
             {
-                new Models.Card(GameValues.Suit.Club, GameValues.Value.Ten),
-                new Models.Card(GameValues.Suit.Club, GameValues.Value.Three),
-                new Models.Card(GameValues.Suit.Club, GameValues.Value.Five),
-                new Models.Card(GameValues.Suit.Club, GameValues.Value.Seven),
-                new Models.Card(GameValues.Suit.Club, GameValues.Value.Nine),
-                new Models.Card(GameValues.Suit.Heart, GameValues.Value.Jack),
-                new Models.Card(GameValues.Suit.Heart, GameValues.Value.King),
+                new HoldemBattle.Models.Card(GameValues.Suit.Club, GameValues.Value.Ten),
+                new HoldemBattle.Models.Card(GameValues.Suit.Club, GameValues.Value.Three),
+                new HoldemBattle.Models.Card(GameValues.Suit.Club, GameValues.Value.Five),
+                new HoldemBattle.Models.Card(GameValues.Suit.Club, GameValues.Value.Seven),
+                new HoldemBattle.Models.Card(GameValues.Suit.Club, GameValues.Value.Nine),
+                new HoldemBattle.Models.Card(GameValues.Suit.Heart, GameValues.Value.Jack),
+                new HoldemBattle.Models.Card(GameValues.Suit.Heart, GameValues.Value.King),
             };
 
             GameValues.Value? topValue = GameLogic.HandRanking.ContainsFlush(cards);
@@ -289,15 +290,15 @@ namespace HoldemBattle.Test
         [TestMethod]
         public void GetsCorrectAceHighCard()
         {
-            List<Models.Card> cards = new List<Models.Card>()
+            List<HoldemBattle.Models.Card> cards = new List<HoldemBattle.Models.Card>()
             {
-                new Models.Card(GameValues.Suit.Club, GameValues.Value.Ace),
-                new Models.Card(GameValues.Suit.Club, GameValues.Value.Three),
-                new Models.Card(GameValues.Suit.Club, GameValues.Value.Five),
-                new Models.Card(GameValues.Suit.Club, GameValues.Value.Seven),
-                new Models.Card(GameValues.Suit.Club, GameValues.Value.Nine),
-                new Models.Card(GameValues.Suit.Heart, GameValues.Value.Jack),
-                new Models.Card(GameValues.Suit.Heart, GameValues.Value.King),
+                new HoldemBattle.Models.Card(GameValues.Suit.Club, GameValues.Value.Ace),
+                new HoldemBattle.Models.Card(GameValues.Suit.Club, GameValues.Value.Three),
+                new HoldemBattle.Models.Card(GameValues.Suit.Club, GameValues.Value.Five),
+                new HoldemBattle.Models.Card(GameValues.Suit.Club, GameValues.Value.Seven),
+                new HoldemBattle.Models.Card(GameValues.Suit.Club, GameValues.Value.Nine),
+                new HoldemBattle.Models.Card(GameValues.Suit.Heart, GameValues.Value.Jack),
+                new HoldemBattle.Models.Card(GameValues.Suit.Heart, GameValues.Value.King),
             };
 
             GameValues.Value? topValue = GameLogic.HandRanking.ContainsFlush(cards);
@@ -310,15 +311,15 @@ namespace HoldemBattle.Test
         [TestMethod]
         public void SixFlush()
         {
-            List<Models.Card> cards = new List<Models.Card>()
+            List<HoldemBattle.Models.Card> cards = new List<HoldemBattle.Models.Card>()
             {
-                new Models.Card(GameValues.Suit.Club, GameValues.Value.Ten),
-                new Models.Card(GameValues.Suit.Club, GameValues.Value.Three),
-                new Models.Card(GameValues.Suit.Club, GameValues.Value.Five),
-                new Models.Card(GameValues.Suit.Club, GameValues.Value.Seven),
-                new Models.Card(GameValues.Suit.Club, GameValues.Value.Nine),
-                new Models.Card(GameValues.Suit.Club, GameValues.Value.Jack),
-                new Models.Card(GameValues.Suit.Heart, GameValues.Value.King),
+                new HoldemBattle.Models.Card(GameValues.Suit.Club, GameValues.Value.Ten),
+                new HoldemBattle.Models.Card(GameValues.Suit.Club, GameValues.Value.Three),
+                new HoldemBattle.Models.Card(GameValues.Suit.Club, GameValues.Value.Five),
+                new HoldemBattle.Models.Card(GameValues.Suit.Club, GameValues.Value.Seven),
+                new HoldemBattle.Models.Card(GameValues.Suit.Club, GameValues.Value.Nine),
+                new HoldemBattle.Models.Card(GameValues.Suit.Club, GameValues.Value.Jack),
+                new HoldemBattle.Models.Card(GameValues.Suit.Heart, GameValues.Value.King),
             };
 
             GameValues.Value? topValue = GameLogic.HandRanking.ContainsFlush(cards);
@@ -331,15 +332,15 @@ namespace HoldemBattle.Test
         [TestMethod]
         public void SevenFlush()
         {
-            List<Models.Card> cards = new List<Models.Card>()
+            List<HoldemBattle.Models.Card> cards = new List<HoldemBattle.Models.Card>()
             {
-                new Models.Card(GameValues.Suit.Club, GameValues.Value.Ten),
-                new Models.Card(GameValues.Suit.Club, GameValues.Value.Three),
-                new Models.Card(GameValues.Suit.Club, GameValues.Value.Five),
-                new Models.Card(GameValues.Suit.Club, GameValues.Value.Seven),
-                new Models.Card(GameValues.Suit.Club, GameValues.Value.Nine),
-                new Models.Card(GameValues.Suit.Club, GameValues.Value.Jack),
-                new Models.Card(GameValues.Suit.Club, GameValues.Value.King),
+                new HoldemBattle.Models.Card(GameValues.Suit.Club, GameValues.Value.Ten),
+                new HoldemBattle.Models.Card(GameValues.Suit.Club, GameValues.Value.Three),
+                new HoldemBattle.Models.Card(GameValues.Suit.Club, GameValues.Value.Five),
+                new HoldemBattle.Models.Card(GameValues.Suit.Club, GameValues.Value.Seven),
+                new HoldemBattle.Models.Card(GameValues.Suit.Club, GameValues.Value.Nine),
+                new HoldemBattle.Models.Card(GameValues.Suit.Club, GameValues.Value.Jack),
+                new HoldemBattle.Models.Card(GameValues.Suit.Club, GameValues.Value.King),
             };
 
             GameValues.Value? topValue = GameLogic.HandRanking.ContainsFlush(cards);

@@ -51,7 +51,10 @@
   </Choose>
   <ItemGroup>
     <Compile Include="GameLogic\HandRanking.cs" />
+    <Compile Include="GameLogic\StakeInfo.cs" />
+    <Compile Include="GameLogic\Table.cs" />
     <Compile Include="Models\Card.cs" />
+    <Compile Include="Models\Player.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

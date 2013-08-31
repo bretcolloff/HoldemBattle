@@ -14,7 +14,7 @@ namespace HoldemBattle.Test
     /// Contains tests around the <see cref="Card"/> class.
     /// </summary>
     [TestClass]
-    public class Card
+    public sealed class Card
     {
         /// <summary>
         /// The Value property on the <see cref="Card"/> class correctly returns the value set in the constructor.

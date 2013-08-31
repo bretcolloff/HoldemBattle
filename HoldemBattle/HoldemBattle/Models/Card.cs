@@ -8,6 +8,7 @@
 namespace HoldemBattle.Models
 {
     using System;
+
     using Suit = GameValues.Suit;
     using Value = GameValues.Value;
 

@@ -1,5 +1,5 @@
 ﻿//-----------------------------------------------------------------------
-// <copyright file="CardRanking.cs" company="TODO">
+// <copyright file="HandRanking.cs" company="TODO">
 //     Not really copyright. 
 // </copyright>
 // <summary>Stores values used for cards.</summary>
