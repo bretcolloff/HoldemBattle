@@ -5,6 +5,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HoldemBattle", "HoldemBattl
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HoldemBattle.Test", "HoldemBattle.Test\HoldemBattle.Test.csproj", "{A5D1C444-93AE-4729-91F2-819D59378AA8}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Storage", "Storage\Storage.csproj", "{36B7E24E-EE78-4D27-883B-0C5F899987C0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestApplication", "TestApplication\TestApplication.csproj", "{713069B8-0B95-470B-A828-67EAF132AE3D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -19,6 +23,14 @@ Global
 		{A5D1C444-93AE-4729-91F2-819D59378AA8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A5D1C444-93AE-4729-91F2-819D59378AA8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A5D1C444-93AE-4729-91F2-819D59378AA8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{36B7E24E-EE78-4D27-883B-0C5F899987C0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{36B7E24E-EE78-4D27-883B-0C5F899987C0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{36B7E24E-EE78-4D27-883B-0C5F899987C0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{36B7E24E-EE78-4D27-883B-0C5F899987C0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{713069B8-0B95-470B-A828-67EAF132AE3D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{713069B8-0B95-470B-A828-67EAF132AE3D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{713069B8-0B95-470B-A828-67EAF132AE3D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{713069B8-0B95-470B-A828-67EAF132AE3D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
